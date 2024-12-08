@@ -29,6 +29,13 @@ The categories that the cook time was divided into are:
 
 We envsion this predictive model as a way for people to gauge a general amount of time that it would take for them to cook. Many indviduals would consider a recipe that takes 1 hour and a recipe that takes 1 hour and 10 minutes to take the essentially the same amount of time. Our regression model would treat these two cooktimes as being different, and would penalize us for a predction that is not exactly the number of minutes of a recipe, which does not reflect the feelings of many individuals who cook. This is another reason why a classifier is better suited for our predictive problem, as it allows us to place the cook time into bins that better reflect how individuals view the cook time of recipes in their head. 
 
+We are performing multi-class classification. Because we are not performing binary classification, we used accuracy the metric used to evaulate our model, as we cannot use precision, recall, or the F-1 statistic. 
+
 # Baseline Model
+
+Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. 
+
+Intitally, the accuracy of our model was 0.70, or 70%. 
+
 # Final Model
 # Fairness Analysis
