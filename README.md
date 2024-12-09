@@ -1,6 +1,7 @@
 # Introduction 
 
 # Data Cleaning and Exploratory Data Analysis 
+To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any 0 values in 'rating' rating with np.nan. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of 0 represent a missing rating. We added a column to dataset called 'avg_rating' to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each 'id'. Lastly, we converted both the date the recipe was created ('date'), and the date the review was submitted ('submitted') to datetime in case we wanted to preform further analysis on the dates. 
 
 <iframe
   src="rating_distributions.html"
