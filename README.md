@@ -3,6 +3,8 @@
 # Data Cleaning 
 To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any 0 values in 'rating' rating with np.nan. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of 0 represent a missing rating. We added a column to dataset called 'avg_rating' to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each 'id'. Lastly, we converted both the date the recipe was created ('date'), and the date the review was submitted ('submitted') to datetime in case we wanted to preform further analysis on the dates. 
 
+
+
 # Exploratory Data Analysis 
 Univariate Analysis : In our exploratory data analysis, we first perform univariate analysis to examine the distribution ratings across the entire dataframe.
 
@@ -13,11 +15,43 @@ Univariate Analysis : In our exploratory data analysis, we first perform univari
   frameborder="0"
 ></iframe>
 
+According to our univariate analysis, the majority of reviews contain a rating of 5 stars, with over 90% of ratings being given between 3-5 stars. Reviews rarely contained ratings of one and two. 
+
+Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
+
+
+
+According to our bivarariate analysis, there exists a relationship between number of steps and rating. 
+
 
 
 # Asssessment of Missingness
 ## NMAR Analysis 
 I believe that one column that has a non-trivial missingness and could be NMAR is the review column. The review column corresponds to the written review for a review/rating for a single recipe by a user. The review column is NMAR because people are more likely to leave a written review for recipes that they feel strongly about --either strong positive feels or strong negative feelings. Therefore, reviews or sentiment that is relatively neutral or ambivalent will be missing from the review column, showing that the the review column is NMAR. 
+
+## Missingness Dependency of Description on Number of Ingredients 
+We preformed a permutation test in order to determine wether the missingness of a description was MAR dependent on any other columns. First, we examined the mean number of ingredients when Description is missing versus not missing. 
+
+**Null Hypothesis**: The mean number of ingredients is the same when Description is missing versus not missing.
+
+**Alternate Hypothesis**:  The mean number of ingredients is different when Description is missing versus not missing.
+
+We conducted a permutation test, performing 1,000 simulations to generate an empirical distribution of the test statistic under the null hypothesis. This approach allowed us to assess the likelihood of observing the calculated test statistic, or one more extreme, under the assumption that the null hypothesis is true. 
+
+Our analysis yielded a p-value of 0.005, which falls below our chosen significance level of 0.05. This indicates strong evidence against the null hypothesis and leads us to reject it with confidence. Based on these findings, we conclude that there is a statistically significant difference in the mean number of ingredients between instances where the Description is missing and where it is not. This result suggests that the presence or absence of a Description is associated with variations in the mean number of ingredients.
+
+## Missingness Dependency of Description on Length of Review 
+Next, we aimed to find a column on of with missingness of Description was not dependent on. We chose to analyze the relationship between missingness of the description column and Length of review.
+
+**Null Hypothesis**: The mean length of review is the same when Description is missing versus not missing.
+
+**Alternate Hypothesis**:  The mean length of review is different when Description is missing versus not missing.
+
+We conducted a permutation test with 1,000 simulations to assess whether the length of the review is associated with the missingness of the Duration column. This analysis aimed to evaluate the relationship under the null hypothesis, which assumes no dependence between review length and the missingness of the Duration column. The resulting p-value was 0.888, which is considerably higher than our chosen significance level of 0.05.
+
+Since our p-value is significantly higher than our significance level, we fail to reject the null hypothesis. This lack of statistical significance suggests that there is no evidence to support a relationship between review length and whether the Duration column is missing. Therefore, we accept the null hypothesis that the missingness of the Duration column is not related to the average length of the reviews.
+
+
 
 # Hypothesis Testing 
 
