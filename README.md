@@ -92,4 +92,16 @@ Our baseline model was a KNN classifier that used two quantitative columns, 'n_i
 Intitally, the accuracy of our model was 0.70, or 70%. 
 
 # Final Model
+
+In our final model, we incorporated the following features: n_ingredients, n_steps, calories, sodium, and is_dessert. We used a KNeighborsClassifier and were able to achieve an accuracy score of 0.83 on the test set. We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature.
+
+We used GridSearchCV to find the best hyperparameters for the KNeighborsClassifier. The hyperparameters We optimized were:
+
+`n_neighbors`: `5`
+`weights`: `uniform`
+`metric`: `manhattan`
+
+After tuning the hyperparameters, the best model achieved an improved accuracy score of 0.91 on the training set. The use of cross-validation ensured the model's robustness. Since the accuracy increased from the baseline to the final model, this indicates better performance of the optimized KNeighborsClassifier.
+
+
 # Fairness Analysis
