@@ -1,7 +1,7 @@
 # Introduction 
 
 # Data Cleaning 
-To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any 0 values in 'rating' rating with np.nan. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of 0 represent a missing rating. We added a column to dataset called 'avg_rating' to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each 'id'. Lastly, we converted both the date the recipe was created ('date'), and the date the review was submitted ('submitted') to datetime in case we wanted to preform further analysis on the dates. 
+To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any `0` values in `rating` rating with `np.nan`. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of `0` represent a missing rating. We added a column to dataset called `avg_rating` to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each 'id'. Lastly, we converted both the date the recipe was created `date`, and the date the review was submitted `submitted` to datetime in case we wanted to preform further analysis on the dates. 
 
 
 
@@ -19,11 +19,9 @@ According to our univariate analysis, the majority of reviews contain a rating o
 
 Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
 
-
+## INSERT PLOT 
 
 According to our bivarariate analysis, there exists a relationship between number of steps and rating. 
-
-
 
 # Asssessment of Missingness
 ## NMAR Analysis 
@@ -36,9 +34,13 @@ We preformed a permutation test in order to determine wether the missingness of 
 
 **Alternate Hypothesis**:  The mean number of ingredients is different when Description is missing versus not missing.
 
+## INSERT PLOT OF MEANS AND WHERE OUR MEAN IS
+
 We conducted a permutation test, performing 1,000 simulations to generate an empirical distribution of the test statistic under the null hypothesis. This approach allowed us to assess the likelihood of observing the calculated test statistic, or one more extreme, under the assumption that the null hypothesis is true. 
 
 Our analysis yielded a p-value of 0.005, which falls below our chosen significance level of 0.05. This indicates strong evidence against the null hypothesis and leads us to reject it with confidence. Based on these findings, we conclude that there is a statistically significant difference in the mean number of ingredients between instances where the Description is missing and where it is not. This result suggests that the presence or absence of a Description is associated with variations in the mean number of ingredients.
+
+
 
 ## Missingness Dependency of Description on Length of Review 
 Next, we aimed to find a column on of with missingness of Description was not dependent on. We chose to analyze the relationship between missingness of the description column and Length of review.
@@ -47,6 +49,8 @@ Next, we aimed to find a column on of with missingness of Description was not de
 
 **Alternate Hypothesis**:  The mean length of review is different when Description is missing versus not missing.
 
+## INSERT PLOT OF MEANS AND WHERE OUR MEAN IS
+
 We conducted a permutation test with 1,000 simulations to assess whether the length of the review is associated with the missingness of the Duration column. This analysis aimed to evaluate the relationship under the null hypothesis, which assumes no dependence between review length and the missingness of the Duration column. The resulting p-value was 0.888, which is considerably higher than our chosen significance level of 0.05.
 
 Since our p-value is significantly higher than our significance level, we fail to reject the null hypothesis. This lack of statistical significance suggests that there is no evidence to support a relationship between review length and whether the Duration column is missing. Therefore, we accept the null hypothesis that the missingness of the Duration column is not related to the average length of the reviews.
@@ -54,6 +58,16 @@ Since our p-value is significantly higher than our significance level, we fail t
 
 
 # Hypothesis Testing 
+For our hypothesis test we aimed to determine if the rating has an effect on the number of steps in the recipes. This will be achieved using a one-way ANOVA test.
+
+**Null Hypothesis**: The rating of each recipe does not have a relationship to mean number of steps.
+
+**Alternate Hypothesis**:  The rating of each recipe does have a relationship to mean number of steps, with mean number of steps differing according to the rating.
+
+## INSERT PLOT OF MEANS FOR ANOVA
+
+The dataset was first cleaned to remove any rows with missing values in the `rating` column and the `n_steps' column. The data was then grouped by rating (from 1 to 5), and the corresponding number of steps was extracted in order to preform the one-way  ANOVA test. The one-way ANOVA test yielded an F-statistic of F= 49.83, with a p-value of 0. Since the p-value is significantly smaller than our chosen threshold of 0.05, we find strong evidence to reject the null hypothesis. This result indicates that the rating does have a statistically significant effect on the number of steps in recipes. These findings suggest that the average number of steps varies meaningfully across recipes with different ratings. This also means, that number of steps can be used as a predictory of 'rating'.
+
 
 # Framing a Prediction Problem
 Our predictive model aimed to predict the cook time of a recipe. 
