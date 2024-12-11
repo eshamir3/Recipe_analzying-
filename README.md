@@ -198,6 +198,10 @@ We envsion this predictive model as a way for people to gauge a general amount o
 
 We are performing multi-class classification. We used accuracy as our test static, as accuracy weighs false negatives and false positives the same. Because this is prediction of cooktime, false negatives and false positives are equally detrimental, one is not more preferred or more penalized than the other. Because of the equal weighing of false negatives and false positives, we chose accuracy as our metric. 
 
+At the time of prediction, we envision that someone would have all the informaion displayed on the general page for a recipe, minus the number of minutes the recipe would take. They would have access to the number of steps and the descriptions of those steps, the numer of ingredients, the average rating of the recipe, and the nutrition information. They would also be able to tell at a glance whether the recipe was for a dessert or not. We will use only these features to predict the minutes category of a recipe. 
+
+After dropping features that are not helpful for our analysis, namely description and steps (but not number of steps), we are left with the dataframe we will use for our model. 
+
 The head of the dataframe that we wil be using for our model is:
 
 |   minutes |   n_steps |   n_ingredients |   avg_rating |   is_dessert |   calories |   sodium | minutes_category   |
@@ -211,15 +215,17 @@ The head of the dataframe that we wil be using for our model is:
 
 # Baseline Model
 
-Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. 
+Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. We used only numerical data for the features of this model, so we had no need to peform any encodings, whether that be ordinal encodings or One Hot Encodings. 
 
-Intitally, the accuracy of our model was 0.70, or 70%. This indicates that the accuracy of our model was good, but had room to be improved on. 
+Intitally, the accuracy of our model was 0.70, or 70% on the training and test data. This indicates that the model was consistent in its accuracy between test and training data, indcating that it was a good model. Still, there were ways to optimize the model to make it better.  
 
 # Final Model
 
 In our final model, we incorporated the following features: n_ingredients, n_steps, calories, sodium, and is_dessert. We used a KNeighborsClassifier and were able to achieve an accuracy score of 0.83 on the test set. The KNN classifer works by estimating where a given set of features would fit in the space of its training data, and takes the labels of the n neighbors closest to it, and the label that is most frequent in the n neighbors is returned as the predicted label for the data point. 
 
-We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature.
+We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature, as described in step 1.
+
+`calories` and `sodium` were included becasue we hypothesized that foods with relatively higher sodium would have shorter cook times. For example, instant ramen is very widely known to be a cost effective and quick dinner, and it takes only a couple minutes to prepare. In general, processed or ultra-processed food contain higher levels of sodium, and many reach for processed or ultra-processed foods as a way of speeding up cook time (so one does not have to make everything from scratch). Additionally, we theorized that foods that contained relatively lower calories would take a shorter time to cook. For example, a snack takes less time to make than a dinner, adn snacks are usually less calorically dense than a full meal.
 
 We used GridSearchCV to find the best hyperparameters for the KNeighborsClassifier. The hyperparameters we tuned were `n_neighbors`, `weights`, and `metric`. The optimized values were:
 
