@@ -166,6 +166,8 @@ We preformed a permutation test in order to determine wether the missingness of 
 
 **Alternate Hypothesis**:  The mean number of ingredients is different when Description is missing versus not missing.
 
+### Absolute Difference in Mean Number of Ingredients between Missing and Non-Missing Decscription
+
 <iframe
   src="missing_MAR.html"
   width="1300"
@@ -185,6 +187,8 @@ Next, we aimed to find a column on of with missingness of Description was not de
 **Null Hypothesis**: The mean length of review is the same when Description is missing versus not missing.
 
 **Alternate Hypothesis**:  The mean length of review is different when Description is missing versus not missing.
+
+### Absolute Difference in Mean Number Length of Review between Missing and Non-Missing Decscription
 
 <iframe
   src="not_missing_MAR.html"
