@@ -117,14 +117,50 @@ Next, in our exploratory data analysis, we preformed a bivariate analysis in ord
 
 ## Aggregate analysis of average number of ingredients per rating:
  
-The plot "Average Number of Ingredients by Rating" provides valuable insights into the relationship between recipe ratings and the average number of ingredients. This analysis can help identify trends in user preferences—whether higher-rated recipes tend to be simpler (fewer ingredients) or more elaborate (greater number of ingredients). For instance, if recipes with fewer ingredients receive higher ratings, it could indicate a preference for convenience. In our grouped analysis, we found that the average number of ingredients per rating is nearly uniform. 
+The Aggregation of "Average Number of Ingredients by Rating" provides valuable insights into the relationship between recipe ratings and the average number of ingredients. This analysis can help identify trends in user preferences—whether higher-rated recipes tend to be simpler (fewer ingredients) or more elaborate (greater number of ingredients). For instance, if recipes with fewer ingredients receive higher ratings, it could indicate a preference for convenience. In our grouped analysis, we found that the average number of ingredients per rating is nearly uniform. 
+
+# Average Number of Ingredients Per Rating
+
+| Rating | Average Number of Ingredients |
+|--------|-------------------------------|
+| 1      | 2.0                           |
+| 2      | 4.0                           |
+| 3      | 5.5                           |
+| 4      | 7.0                           |
+| 5      | 9.0                           |
+
+
+## Aggregate analysis of number of recipes per contributor:
+
+This aggregation the number of recipes contributed by the top 10 contributors, showcasing their significant role in the dataset. The contributor with ID `37449` stands out, having submitted over 3,000 recipes, making them the highest contributor by a notable margin. Other contributors, such as `226863` and `424680`, follow closely. This part of our analysis demonstrates that many of our recipes come from the same contributor, which could explain certain patterns in our data. 
+
+# Average Number of Recipes Per Contributor 
+
+| Contributor ID  | Average Number of Recipes |
+|---------|-------------------------------|
+| 37449   | 3060                          |
+| 226863  | 2754                          |
+| 424680  | 2503                          |
+| ...     | ...                           |
+| 65502   | 1795                          |
+| 679953  | 1711                          |
+| 461834  | 1680                          |
 
 
 
-## Aggregate analysis of Average Review Length per Rating
+## Aggregate analysis of Average Review Length per Rating:
 
-This line plot, "Average Review Length by Rating," highlights the relationship between the average length of user reviews and their assigned recipe ratings. The trend suggests that users who rate recipes with a score of 3 tend to write the longest reviews, averaging over 340 characters. This may indicate that users with mixed feelings (neither entirely positive nor negative) take more time to explain their experiences or provide detailed feedback.
+This agreggate plot, "Average Review Length by Rating," highlights the relationship between the average length of user reviews and their assigned recipe ratings. The trend suggests that users who rate recipes with a score of 3 tend to write the longest reviews, averaging over 340 characters. This may indicate that users with mixed feelings (neither entirely positive nor negative) take more time to explain their experiences or provide detailed feedback.
 Conversely, the shortest reviews are associated with extreme ratings of 1 and 5. These users might be more inclined to provide concise feedback, such as quick praise or criticism. This pattern provides insights into user engagement and how satisfaction levels influence the length of reviews, which can be valuable for understanding user sentiment and feedback quality.
+
+| Rating | Average Review Length by Rating |
+|--------|---------------------------------|
+| 1.0    | 250.57                         |
+| 2.0    | 298.07                         |
+| 3.0    | 335.85                         |
+| 4.0    | 314.88                         |
+| 5.0    | 287.15                         |
+
 
 
 
@@ -198,6 +234,10 @@ We envsion this predictive model as a way for people to gauge a general amount o
 
 We are performing multi-class classification. We used accuracy as our test static, as accuracy weighs false negatives and false positives the same. Because this is prediction of cooktime, false negatives and false positives are equally detrimental, one is not more preferred or more penalized than the other. Because of the equal weighing of false negatives and false positives, we chose accuracy as our metric. 
 
+At the time of prediction, we envision that someone would have all the informaion displayed on the general page for a recipe, minus the number of minutes the recipe would take. They would have access to the number of steps and the descriptions of those steps, the numer of ingredients, the average rating of the recipe, and the nutrition information. They would also be able to tell at a glance whether the recipe was for a dessert or not. We will use only these features to predict the minutes category of a recipe. 
+
+After dropping features that are not helpful for our analysis, namely description and steps (but not number of steps), we are left with the dataframe we will use for our model. 
+
 The head of the dataframe that we wil be using for our model is:
 
 |   minutes |   n_steps |   n_ingredients |   avg_rating |   is_dessert |   calories |   sodium | minutes_category   |
@@ -211,15 +251,17 @@ The head of the dataframe that we wil be using for our model is:
 
 # Baseline Model
 
-Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. 
+Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. We used only numerical data for the features of this model, so we had no need to peform any encodings, whether that be ordinal encodings or One Hot Encodings. 
 
-Intitally, the accuracy of our model was 0.70, or 70%. This indicates that the accuracy of our model was good, but had room to be improved on. 
+Intitally, the accuracy of our model was 0.70, or 70% on the training and test data. This indicates that the model was consistent in its accuracy between test and training data, indcating that it was a good model. Still, there were ways to optimize the model to make it better.  
 
 # Final Model
 
 In our final model, we incorporated the following features: n_ingredients, n_steps, calories, sodium, and is_dessert. We used a KNeighborsClassifier and were able to achieve an accuracy score of 0.83 on the test set. The KNN classifer works by estimating where a given set of features would fit in the space of its training data, and takes the labels of the n neighbors closest to it, and the label that is most frequent in the n neighbors is returned as the predicted label for the data point. 
 
-We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature.
+We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature, as described in step 1.
+
+`calories` and `sodium` were included becasue we hypothesized that foods with relatively higher sodium would have shorter cook times. For example, instant ramen is very widely known to be a cost effective and quick dinner, and it takes only a couple minutes to prepare. In general, processed or ultra-processed food contain higher levels of sodium, and many reach for processed or ultra-processed foods as a way of speeding up cook time (so one does not have to make everything from scratch). Additionally, we theorized that foods that contained relatively lower calories would take a shorter time to cook. For example, a snack takes less time to make than a dinner, and snacks are usually less calorically dense than a full meal. From the perspective of the data generating process, we hypothesized that because there seemed to be a relationship between these columns and the trend of minutes, they would be more informative features, and would allow our model to make better predictions. 
 
 We used GridSearchCV to find the best hyperparameters for the KNeighborsClassifier. The hyperparameters we tuned were `n_neighbors`, `weights`, and `metric`. The optimized values were:
 
