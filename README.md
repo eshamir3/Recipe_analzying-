@@ -95,16 +95,6 @@ In our exploratory data analysis, we first perform univariate analysis to examin
 According to our univariate analysis, the majority of reviews contain a rating of 5 stars, with over 90% of ratings being given between 3-5 stars. Reviews rarely contained ratings of one and two. 
 
 ## Bivariate Analysis:
-Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
-
-<iframe
-  src="steps_vs_mins.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
-
-## A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
 
 <iframe
   src="minutes_vs_steps.html"
@@ -112,6 +102,7 @@ Next, in our exploratory data analysis, we preformed a bivariate analysis in ord
   height="600"
   frameborder="0"
 ></iframe>
+This plot shows the distribution of average cook time for each unique number of steps in the dataset. As we can see, there is a sharp increase in the cook time as the number of steps increases. This relationship may not be linear, but it does appear that there is a positive relationship between average number of minutes (average cooktime) and average number of steps. 
 
 # Interesting Aggregates
 
