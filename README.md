@@ -1,6 +1,6 @@
 # Introduction 
 
-The question that we chose to analyze through this project was how do various factors impact the cook time of a recipe? 
+The question that we chose to analyze through this project was: "How do various factors impact the cook time of a recipe?" 
 
 In recent years, there has been an explosion in food delivery apps like UberEats and Doordash, which could indicate a shift towards eating out and a shift against cooking at home. This has also been coupled with an increasing emphasis on productivity in today's culture, leading us to hypothesize that many people are choosing to not cook because it takes too much time. For these reasons, we decided to explore this dataset with the goal of investigating which factors impact the cook time of a recipe, with a secondary emphasis on how the rating of a particiular recipe is impacted by its cook time or number of ingredients or number steps. 
 
