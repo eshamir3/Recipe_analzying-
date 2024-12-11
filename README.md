@@ -231,3 +231,13 @@ After tuning the hyperparameters, the best model achieved an improved accuracy s
 
 
 # Fairness Analysis
+We performed a fairness analysis to determine whether there was accuracy parity between recipes that had a high average rating and a low average rating. We set the threshold for high ratings to be above 3, so any recipe that was rated over 3 was considered to be highly rated, while any recipe that had an average rating of below 3 was considered to not be highly rated. We created these groups by using a helper function to binarize the “average rating” column. 
+
+Our **null hypothesis** was that there is no difference in accuracy between low and high rated recipes. 
+
+Our **alternative hypothesis** was that there is a difference in accuracy between low and high rated recipes. 
+
+With similar reasoning as for why we selected accuracy as our metric for our classifier, we chose accuray parity for our fairness analysis because we wish to weigh false negatives and false positives for each category equally, and precision and recall do not weigh them equally. We chose a significance level of 0.05 and performed a permutation test with 500 repetitions to simulate the distribution under the null hypothesis. 
+
+Our p-value for our permutation test was 1.0, which is higher than our significance level of 0.05, so we fail to reject the null hypothesis that there is no difference in the classification accuracy between low and high rated recipes, and that our model has achieved accuracy parity for low and high rated recipes. 
+
