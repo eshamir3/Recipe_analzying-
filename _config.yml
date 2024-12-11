@@ -4,4 +4,4 @@ plugins:
 
 
 title: [Analaysis of Recipes and Ratings]
-description: [This project analyses the ratings of recipes with respect to the number of steps they have.]
+description: [This project investigates question related to cook time in a dataframe of recipes and ratings]
