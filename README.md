@@ -117,14 +117,50 @@ Next, in our exploratory data analysis, we preformed a bivariate analysis in ord
 
 ## Aggregate analysis of average number of ingredients per rating:
  
-The plot "Average Number of Ingredients by Rating" provides valuable insights into the relationship between recipe ratings and the average number of ingredients. This analysis can help identify trends in user preferences—whether higher-rated recipes tend to be simpler (fewer ingredients) or more elaborate (greater number of ingredients). For instance, if recipes with fewer ingredients receive higher ratings, it could indicate a preference for convenience. In our grouped analysis, we found that the average number of ingredients per rating is nearly uniform. 
+The Aggregation of "Average Number of Ingredients by Rating" provides valuable insights into the relationship between recipe ratings and the average number of ingredients. This analysis can help identify trends in user preferences—whether higher-rated recipes tend to be simpler (fewer ingredients) or more elaborate (greater number of ingredients). For instance, if recipes with fewer ingredients receive higher ratings, it could indicate a preference for convenience. In our grouped analysis, we found that the average number of ingredients per rating is nearly uniform. 
+
+# Average Number of Ingredients Per Rating
+
+| Rating | Average Number of Ingredients |
+|--------|-------------------------------|
+| 1      | 2.0                           |
+| 2      | 4.0                           |
+| 3      | 5.5                           |
+| 4      | 7.0                           |
+| 5      | 9.0                           |
+
+
+## Aggregate analysis of number of recipes per contributor:
+
+This aggregation the number of recipes contributed by the top 10 contributors, showcasing their significant role in the dataset. The contributor with ID `37449` stands out, having submitted over 3,000 recipes, making them the highest contributor by a notable margin. Other contributors, such as `226863` and `424680`, follow closely. This part of our analysis demonstrates that many of our recipes come from the same contributor, which could explain certain patterns in our data. 
+
+# Average Number of Recipes Per Contributor 
+
+| Contributor ID  | Average Number of Recipes |
+|---------|-------------------------------|
+| 37449   | 3060                          |
+| 226863  | 2754                          |
+| 424680  | 2503                          |
+| ...     | ...                           |
+| 65502   | 1795                          |
+| 679953  | 1711                          |
+| 461834  | 1680                          |
 
 
 
-## Aggregate analysis of Average Review Length per Rating
+## Aggregate analysis of Average Review Length per Rating:
 
-This line plot, "Average Review Length by Rating," highlights the relationship between the average length of user reviews and their assigned recipe ratings. The trend suggests that users who rate recipes with a score of 3 tend to write the longest reviews, averaging over 340 characters. This may indicate that users with mixed feelings (neither entirely positive nor negative) take more time to explain their experiences or provide detailed feedback.
+This agreggate plot, "Average Review Length by Rating," highlights the relationship between the average length of user reviews and their assigned recipe ratings. The trend suggests that users who rate recipes with a score of 3 tend to write the longest reviews, averaging over 340 characters. This may indicate that users with mixed feelings (neither entirely positive nor negative) take more time to explain their experiences or provide detailed feedback.
 Conversely, the shortest reviews are associated with extreme ratings of 1 and 5. These users might be more inclined to provide concise feedback, such as quick praise or criticism. This pattern provides insights into user engagement and how satisfaction levels influence the length of reviews, which can be valuable for understanding user sentiment and feedback quality.
+
+| Rating | Average Review Length by Rating |
+|--------|---------------------------------|
+| 1.0    | 250.57                         |
+| 2.0    | 298.07                         |
+| 3.0    | 335.85                         |
+| 4.0    | 314.88                         |
+| 5.0    | 287.15                         |
+
 
 
 
