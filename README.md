@@ -1,8 +1,16 @@
+# Overview 
+
+This project focuses on analyzing the relationship between recipe attributes—such as the number of ingredients, steps, and user feedback—and recipe ratings. Additionally, it explores patterns in user reviews, investigates missing data dependencies, and develops a predictive model for estimating recipe cook times. Through these analyses, we aim to uncover trends that impact user engagement and satisfaction.
+
 # Introduction 
 
-The question that we chose to analyze through this project was: "How do various factors impact the cook time of a recipe?" 
+Our analysis examines key factors that influence recipe ratings, such as the complexity of recipes, the number of ingredients, and the length of reviews. We hypothesize that simplicity, as reflected by fewer ingredients and shorter steps, may correlate with higher ratings due to its appeal to busy individuals. At the same time, review length may reveal user sentiment, with detailed feedback indicating mixed opinions or strong feelings. The question that we chose to analyze through this project was: "How do various factors impact the cook time of a recipe?" 
 
-In recent years, there has been an explosion in food delivery apps like UberEats and Doordash, which could indicate a shift towards eating out and a shift against cooking at home. This has also been coupled with an increasing emphasis on productivity in today's culture, leading us to hypothesize that many people are choosing to not cook because it takes too much time. For these reasons, we decided to explore this dataset with the goal of investigating which factors impact the cook time of a recipe, with a secondary emphasis on how the rating of a particiular recipe is impacted by its cook time or number of ingredients or number steps. 
+Beyond understanding cook time, we also investigate missing data patterns, exploring whether the absence of recipe descriptions or reviews depends on other variables, such as the number of ingredients or the length of user reviews. These insights help us address biases in the dataset and enhance the reliability of our findings.
+
+Lastly, we develop a predictive model to categorize recipes into practical cook time bins, such as "Weekday Recipe" or "Holiday Recipe," based on factors like ingredients, steps, and nutritional data. This classification approach aims to provide users with a quick way to gauge how much time a recipe might require, making cooking more accessible and manageable.
+
+Our project leverages two datasets from Food.com: one detailing recipe metadata and another containing user reviews and ratings. These datasets, originally compiled for research into personalized recipe recommendations, provide a foundation for our exploration recipe and review characteristics.
 
 # Data Cleaning and Exploratory Data Analysis
 
@@ -76,18 +84,18 @@ The head of our cleaned dataframe is:
 
 
 
-Univariate Analysis : In our exploratory data analysis, we first perform univariate analysis to examine the distribution ratings across the entire dataframe.
-
+## Univariate Analysis: 
+In our exploratory data analysis, we first perform univariate analysis to examine the distribution ratings across the entire dataframe.
 <iframe
   src="rating_distributions.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 According to our univariate analysis, the majority of reviews contain a rating of 5 stars, with over 90% of ratings being given between 3-5 stars. Reviews rarely contained ratings of one and two. 
 
-Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
+## Bivariate Analysis:
+Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
 
 <iframe
   src="steps_vs_mins.html"
@@ -96,7 +104,7 @@ Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivar
   frameborder="0"
 ></iframe>
 
-A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
+## A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
 
 <iframe
   src="minutes_vs_steps.html"
@@ -223,3 +231,13 @@ After tuning the hyperparameters, the best model achieved an improved accuracy s
 
 
 # Fairness Analysis
+We performed a fairness analysis to determine whether there was accuracy parity between recipes that had a high average rating and a low average rating. We set the threshold for high ratings to be above 3, so any recipe that was rated over 3 was considered to be highly rated, while any recipe that had an average rating of below 3 was considered to not be highly rated. We created these groups by using a helper function to binarize the “average rating” column. 
+
+Our **null hypothesis** was that there is no difference in accuracy between low and high rated recipes. 
+
+Our **alternative hypothesis** was that there is a difference in accuracy between low and high rated recipes. 
+
+With similar reasoning as for why we selected accuracy as our metric for our classifier, we chose accuray parity for our fairness analysis because we wish to weigh false negatives and false positives for each category equally, and precision and recall do not weigh them equally. We chose a significance level of 0.05 and performed a permutation test with 500 repetitions to simulate the distribution under the null hypothesis. 
+
+Our p-value for our permutation test was 1.0, which is higher than our significance level of 0.05, so we fail to reject the null hypothesis that there is no difference in the classification accuracy between low and high rated recipes, and that our model has achieved accuracy parity for low and high rated recipes. 
+
