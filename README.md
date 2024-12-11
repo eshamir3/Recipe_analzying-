@@ -76,18 +76,18 @@ The head of our cleaned dataframe is:
 
 
 
-Univariate Analysis : In our exploratory data analysis, we first perform univariate analysis to examine the distribution ratings across the entire dataframe.
-
+## Univariate Analysis: 
+In our exploratory data analysis, we first perform univariate analysis to examine the distribution ratings across the entire dataframe.
 <iframe
   src="rating_distributions.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-
 According to our univariate analysis, the majority of reviews contain a rating of 5 stars, with over 90% of ratings being given between 3-5 stars. Reviews rarely contained ratings of one and two. 
 
-Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
+## Bivariate Analysis:
+Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
 
 <iframe
   src="steps_vs_mins.html"
@@ -96,7 +96,7 @@ Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivar
   frameborder="0"
 ></iframe>
 
-A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
+## A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
 
 <iframe
   src="minutes_vs_steps.html"
