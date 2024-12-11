@@ -112,7 +112,12 @@ We preformed a permutation test in order to determine wether the missingness of 
 
 **Alternate Hypothesis**:  The mean number of ingredients is different when Description is missing versus not missing.
 
-## INSERT PLOT OF MEANS AND WHERE OUR MEAN IS
+<iframe
+  src="missing_MAR.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 We conducted a permutation test, performing 1,000 simulations to generate an empirical distribution of the test statistic under the null hypothesis. This approach allowed us to assess the likelihood of observing the calculated test statistic, or one more extreme, under the assumption that the null hypothesis is true. 
 
@@ -127,7 +132,12 @@ Next, we aimed to find a column on of with missingness of Description was not de
 
 **Alternate Hypothesis**:  The mean length of review is different when Description is missing versus not missing.
 
-## INSERT PLOT OF MEANS AND WHERE OUR MEAN IS
+<iframe
+  src="not_missing_MAR.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 We conducted a permutation test with 1,000 simulations to assess whether the length of the review is associated with the missingness of the Duration column. This analysis aimed to evaluate the relationship under the null hypothesis, which assumes no dependence between review length and the missingness of the Duration column. The resulting p-value was 0.888, which is considerably higher than our chosen significance level of 0.05.
 
@@ -141,8 +151,6 @@ For our hypothesis test we aimed to determine if the rating has an effect on the
 **Null Hypothesis**: The rating of each recipe does not have a relationship to mean number of steps.
 
 **Alternate Hypothesis**:  The rating of each recipe does have a relationship to mean number of steps, with mean number of steps differing according to the rating.
-
-## INSERT PLOT OF MEANS FOR ANOVA
 
 The dataset was first cleaned to remove any rows with missing values in the `rating` column and the `n_steps' column. The data was then grouped by rating (from 1 to 5), and the corresponding number of steps was extracted in order to preform the one-way  ANOVA test. The one-way ANOVA test yielded an F-statistic of F= 49.83, with a p-value of 0. Since the p-value is significantly smaller than our chosen threshold of 0.05, we find strong evidence to reject the null hypothesis. 
 
@@ -182,7 +190,9 @@ Intitally, the accuracy of our model was 0.70, or 70%. This indicates that the a
 
 # Final Model
 
-In our final model, we incorporated the following features: n_ingredients, n_steps, calories, sodium, and is_dessert. We used a KNeighborsClassifier and were able to achieve an accuracy score of 0.83 on the test set. We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature.
+In our final model, we incorporated the following features: n_ingredients, n_steps, calories, sodium, and is_dessert. We used a KNeighborsClassifier and were able to achieve an accuracy score of 0.83 on the test set. The KNN classifer works by estimating where a given set of features would fit in the space of its training data, and takes the labels of the n neighbors closest to it, and the label that is most frequent in the n neighbors is returned as the predicted label for the data point. 
+
+We first standardized the features `calories` and `sodium`  using StandardScaler, as they are on different scales and could skew the performance of the model. Additionally, calories and sodium having a value of 0 has no real world meaning, as it is very unlikely that a recipe would have 0 calories of 0% of the PDV of sodium, so it makes more sense to standardize those columns so that we can determine the relative amounts of sodium and calories of each recipe. The features `n_ingredients` and `n_steps` were included as they are, while `is_dessert` was one-hot encoded to account for its categorical nature.
 
 We used GridSearchCV to find the best hyperparameters for the KNeighborsClassifier. The hyperparameters we tuned were `n_neighbors`, `weights`, and `metric`. The optimized values were:
 
