@@ -116,7 +116,9 @@ For our hypothesis test we aimed to determine if the rating has an effect on the
 
 ## INSERT PLOT OF MEANS FOR ANOVA
 
-The dataset was first cleaned to remove any rows with missing values in the `rating` column and the `n_steps' column. The data was then grouped by rating (from 1 to 5), and the corresponding number of steps was extracted in order to preform the one-way  ANOVA test. The one-way ANOVA test yielded an F-statistic of F= 49.83, with a p-value of 0. Since the p-value is significantly smaller than our chosen threshold of 0.05, we find strong evidence to reject the null hypothesis. This result indicates that the rating does have a statistically significant effect on the number of steps in recipes. These findings suggest that the average number of steps varies meaningfully across recipes with different ratings. This also means, that number of steps can be used as a predictory of 'rating'.
+The dataset was first cleaned to remove any rows with missing values in the `rating` column and the `n_steps' column. The data was then grouped by rating (from 1 to 5), and the corresponding number of steps was extracted in order to preform the one-way  ANOVA test. The one-way ANOVA test yielded an F-statistic of F= 49.83, with a p-value of 0. Since the p-value is significantly smaller than our chosen threshold of 0.05, we find strong evidence to reject the null hypothesis. 
+
+A one way ANOVA is appropriate in this case because we are aiming to discern whether there is a signficant difference between the distributions of multiple groups. An ANOVA test will tell us whether the variance in the data is more explained by the variance between groups is or better explained by the variance within groups. A small p-value from the ANOVA test indicates that the variance in the data is more explained by the variance between groups. Our p-value of 0 indicates that the rating does have a statistically significant effect on the number of steps in recipes. These findings suggest that the average number of steps varies meaningfully across recipes with different ratings. This also means, that number of steps can be used as a predictory of 'rating'.
 
 
 # Framing a Prediction Problem
@@ -148,7 +150,7 @@ The head of the dataframe that we wil be using for our model is:
 
 Our baseline model was a KNN classifier that used two quantitative columns, 'n_ingredients' and 'n_steps' to predict the category of cooktimes (the 'minute_category'). The 'minutes category' column is a column of categorical nominal data. 
 
-Intitally, the accuracy of our model was 0.70, or 70%. 
+Intitally, the accuracy of our model was 0.70, or 70%. This indicates that the accuracy of our model was good, but had room to be improved on. 
 
 # Final Model
 
