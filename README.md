@@ -40,9 +40,21 @@ According to our univariate analysis, the majority of reviews contain a rating o
 
 Bivariate Analysis: Next, in our exploratory data analysis, we preformed a bivariate analysis in order to examine the relationship between rating and number of steps.
 
-## INSERT PLOT 
+<iframe
+  src="steps_vs_mins.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-According to our bivarariate analysis, there exists a relationship between number of steps and rating. 
+A plot showing the relationship between the average number of minutes for each unique number of steps of the recipes found in the dataset. 
+
+<iframe
+  src="minutes_vs_steps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 # Asssessment of Missingness
 ## NMAR Analysis 
