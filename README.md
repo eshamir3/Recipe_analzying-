@@ -2,6 +2,8 @@
 
 This project focuses on analyzing the relationship between recipe attributes—such as the number of ingredients, steps, and user feedback—and recipe ratings. Additionally, it explores patterns in user reviews, investigates missing data dependencies, and develops a predictive model for estimating recipe cook times. Through these analyses, we aim to uncover trends that impact user engagement and satisfaction.
 
+# Introduction 
+
 Our analysis examines key factors that influence recipe ratings, such as the complexity of recipes, the number of ingredients, and the length of reviews. We hypothesize that simplicity, as reflected by fewer ingredients and shorter steps, may correlate with higher ratings due to its appeal to busy individuals. At the same time, review length may reveal user sentiment, with detailed feedback indicating mixed opinions or strong feelings. The question that we chose to analyze through this project was: "How do various factors impact the cook time of a recipe?" 
 
 Beyond understanding cook time, we also investigate missing data patterns, exploring whether the absence of recipe descriptions or reviews depends on other variables, such as the number of ingredients or the length of user reviews. These insights help us address biases in the dataset and enhance the reliability of our findings.
