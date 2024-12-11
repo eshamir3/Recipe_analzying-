@@ -5,8 +5,8 @@ To clean our data, we started by preforming a left merge on our recipe and inter
 
 | Column Name       | Description                                     |
 |--------------------|-------------------------------------------------|
-| `name`            | Name of the recipe.                            |
-| `id`              | Unique identifier for the recipe.              |
+| `name`            | Name of the recipe.                        |
+| `id`              | Unique identifier for the recipe.             |
 | `minutes`         | Time required to make the recipe (in minutes). |
 | `contributor_id`  | ID of the person who contributed the recipe.   |
 | `submitted`       | Date the recipe was submitted.                 |
