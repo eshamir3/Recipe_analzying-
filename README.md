@@ -8,13 +8,13 @@ After performing the left merge detailed in the Data Cleaning section of the web
 
 | Column Name       | Description                                     |
 |--------------------|-------------------------------------------------|
-| `name`            | Name of the recipe.                        |
-| `id`              | Unique identifier for the recipe.             |
+| `name`            | Name of the recipe.                            |
+| `id`              | Unique identifier for the recipe.              |
 | `minutes`         | Time required to make the recipe (in minutes). |
 | `contributor_id`  | ID of the person who contributed the recipe.   |
 | `submitted`       | Date the recipe was submitted.                 |
 | `tags`            | Tags associated with the recipe.              |
-| `nutrition`       | Nutritional information.                      |
+| `nutrition`       | Nutritional information, cleaned and formatted.|
 | `n_steps`         | Number of steps in the recipe.                |
 | `steps`           | Detailed steps for the recipe.                |
 | `description`     | Description of the recipe.                    |
@@ -26,6 +26,9 @@ After performing the left merge detailed in the Data Cleaning section of the web
 | `review`          | User-provided review for the recipe.          |
 | `avg_rating`      | Average rating for the recipe.                |
 | `len_review`      | Length of the review text.                    |
+| `is_dessert`      | Indicates whether the recipe is for a dessert (1 for dessert, 0 otherwise). |
+| `calories`        | Estimated calories for the recipe.            |
+| `sodium`          | Estimated sodium content (in milligrams) for the recipe. |
 
 # Data Cleaning and Exploratory Data Analysis
 To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any `0` values in `rating` rating with `np.nan`. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of `0` represent a missing rating. We added a column to dataset called `avg_rating` to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each `id`. Lastly, we converted both the date the recipe was created `date`, and the date the review was submitted `submitted` to datetime in case we wanted to preform further analysis on the dates. 
@@ -71,6 +74,25 @@ A plot showing the relationship between the average number of minutes for each u
   height="600"
   frameborder="0"
 ></iframe>
+
+# Interesting Aggregates
+
+## Aggregate analysis of average number of ingredients per rating:
+ 
+The plot "Average Number of Ingredients by Rating" provides valuable insights into the relationship between recipe ratings and the average number of ingredients. This analysis can help identify trends in user preferences—whether higher-rated recipes tend to be simpler (fewer ingredients) or more elaborate (greater number of ingredients). For instance, if recipes with fewer ingredients receive higher ratings, it could indicate a preference for convenience. In our grouped analysis, we found that the average number of ingredients per rating is nearly uniform. 
+
+## Aggregate analysis of number of recipes per contributor:
+
+This bar chart illustrates the number of recipes contributed by the top 10 contributors, showcasing their significant role in the dataset. The contributor with ID `37449` stands out, having submitted over 3,000 recipes, making them the highest contributor by a notable margin. Other contributors, such as `226863` and `424680`, follow closely. This part of our analysis demonstrates that many of our recipes come from the same contributor, which could explain certain patterns in our data. 
+
+
+## Aggregate analysis of Average Review Length per Rating
+
+
+This line plot, "Average Review Length by Rating," highlights the relationship between the average length of user reviews and their assigned recipe ratings. The trend suggests that users who rate recipes with a score of 3 tend to write the longest reviews, averaging over 340 characters. This may indicate that users with mixed feelings (neither entirely positive nor negative) take more time to explain their experiences or provide detailed feedback.
+Conversely, the shortest reviews are associated with extreme ratings of 1 and 5. These users might be more inclined to provide concise feedback, such as quick praise or criticism. This pattern provides insights into user engagement and how satisfaction levels influence the length of reviews, which can be valuable for understanding user sentiment and feedback quality.
+
+
 
 # Asssessment of Missingness
 ## NMAR Analysis 
