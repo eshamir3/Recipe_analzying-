@@ -1,5 +1,11 @@
 # Introduction 
 
+The question that we chose to analyze through this project was how do various factors impact the cook time of a recipe? 
+
+In recent years, there has been an explosion in food delivery apps like UberEats and Doordash, which could indicate a shift towards eating out and a shift against cooking at home. This has also been coupled with an increasing emphasis on productivity in today's culture, leading us to hypothesize that many people are choosing to not cook because it takes too much time. For these reasons, we decided to explore this dataset with the goal of investigating which factors impact the cook time of a recipe, with a secondary emphasis on how the rating of a particiular recipe is impacted by its cook time or number of ingredients or number steps. 
+
+After performing the left merge detailed in the Data Cleaning section of the website, our DataFrame had 234429 rows and 16 columns.
+
 # Data Cleaning 
 To clean our data, we started by preforming a left merge on our recipe and interaction datasets into one dataset containing all information about each recipe as well as each review given on each recipe. We chose to use a left merge in order to preserve recipes that reviews were not written about in our dataset. Next, we replaced any `0` values in `rating` rating with `np.nan`. We did this because the dataset specifies that ratings are given on a scale of 1-5, so therefore, any values of `0` represent a missing rating. We added a column to dataset called `avg_rating` to represent the average rating on each recipe. To do this, we grouped by each recipe, and extracted the average rating for each 'id'. Lastly, we converted both the date the recipe was created `date`, and the date the review was submitted `submitted` to datetime in case we wanted to preform further analysis on the dates. 
 
