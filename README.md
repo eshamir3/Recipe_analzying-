@@ -168,7 +168,7 @@ We preformed a permutation test in order to determine wether the missingness of 
 
 <iframe
   src="missing_MAR.html"
-  width="1000"
+  width="1300"
   height="600"
   frameborder="0"
 ></iframe>
@@ -188,7 +188,7 @@ Next, we aimed to find a column on of with missingness of Description was not de
 
 <iframe
   src="not_missing_MAR.html"
-  width="1000"
+  width="1300"
   height="600"
   frameborder="0"
 ></iframe>
